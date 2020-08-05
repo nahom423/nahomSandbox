@@ -39,14 +39,14 @@ func Index(w http.ResponseWriter, r *http.Request){
 	for selDB.Next(){
 		var id int
 		var name, address string
-		err = selDB.Scan(&id, &name, &city)
+		err = selDB.Scan(&id, &name, &address)
 		if err != nil {
 			panic(err.Error())
 		}
 		list.Id = id
 		list.Name = name
 		list.Address = address
-		res = append (res, emp)
+		res = append (res, list)
 	}
 	tmpl.ExecuteTemplate(w,"Index", res)
 	defer db.Close()
