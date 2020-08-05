@@ -4,8 +4,7 @@ import (
 	"log"
 	"net/http"
 	"text/template"
-
-	_ "github.com/go-sql-driver/mysql"
+	_"github.com/go-sql-driver/mysql"
 )
 type ContactList struct { //creating struct
 	Id int
@@ -14,11 +13,12 @@ type ContactList struct { //creating struct
 }
 
 func dbConn() (db *sql.DB){ //establishing db connection
-	dbDriver := "MySQL"
-	dbUser:= "nnegash"
-	dbPass:= "1234"
-	dbName:= "IFM_Contact_List"
-	db, err := sql.Open(dbDriver, dbUser + ":" +dbPass+"@/"+dbName )
+	//dbDriver := "mysql"
+	//dbUser:= "nnegash"
+	//dbPass:= "1234"
+	//dbName:= "IFM_Contact_List"
+   //db, err := sql.Open(dbDriver, dbUser + ":" +dbPass+"@/"+dbName )
+	db, err := sql.Open(string("mysql"), "nnegash:1234@tcp(34.72.0.86:3306)/IFM_Contact_List")
 	if err!= nil{
 		panic(err.Error())
 	}
