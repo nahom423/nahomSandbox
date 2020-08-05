@@ -13,7 +13,7 @@ type ContactList struct { //creating struct
 	Address string
 }
 
-func db() (db *sql.DB){ //establishing db connection
+func dbConn() (db *sql.DB){ //establishing db connection
 	dbDriver := "mysql"
 	dbUser:= "nnegash"
 	dbPass:= "1234"
@@ -103,12 +103,12 @@ func Edit (w http.ResponseWriter, r *http.Request){
 }
 
 func Insert(w http.ResponseWriter, r *http.Request)  {
-	db := dbConnect()
+	db := dbConn()
 	if r.Method == "POST"{
 		name := r.FormValue("name")
 		address:= r.FormValue("address")
 		insForm, err := db.Prepare("INSERT INTO Contact_List(name, address) VALUES(?,?)")
-		if err != nill {
+		if err != nil {
 			panic(err.Error())
 		}
 		insForm.Exec(name, address)
@@ -120,7 +120,7 @@ func Insert(w http.ResponseWriter, r *http.Request)  {
 }
 
 func Update(w http.ResponseWriter, r *http.Request){
-	db := dbConn
+	db := dbConn()
 	if r.Method == "POST"{
 		name := r.FormValue("name")
 		address := r.FormValue("address")
