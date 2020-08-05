@@ -14,7 +14,7 @@ type ContactList struct { //creating struct
 }
 
 func dbConn() (db *sql.DB){ //establishing db connection
-	dbDriver := "mysql"
+	dbDriver := "MySQL"
 	dbUser:= "nnegash"
 	dbPass:= "1234"
 	dbName:= "IFM_Contact_List"
@@ -150,7 +150,7 @@ func Delete (w http.ResponseWriter, r *http.Request){
 	http.Redirect(w, r, "/", 301)
 }
 func main() {
-	log.Println("Server started on: http://localhost:8080")
+	log.Println("Server started on: http://localhost:8000")
 	http.HandleFunc("/", Index)
 	http.HandleFunc("/show", Show)
 	http.HandleFunc("/new", New)
@@ -158,5 +158,5 @@ func main() {
 	http.HandleFunc("/insert", Insert)
 	http.HandleFunc("/update", Update)
 	http.HandleFunc("/delete", Delete)
-	http.ListenAndServe(":8080", nil)
+	http.ListenAndServe(":8000", nil)
 }
